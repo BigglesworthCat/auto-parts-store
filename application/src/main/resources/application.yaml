@@ -1,1 +1,12 @@
-
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auto_parts_store
+    driver-class-name: org.postgresql.Driver
+    username: admin
+    password: password
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: true
