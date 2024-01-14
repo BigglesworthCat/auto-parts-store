@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create supplier</title>
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/suppliers/create_supplier}" th:object="${supplier}" method="post">
+        <legend>Create supplier</legend>
+
+        <div>
+            <input type="text" th:field="*{name}" id="name">
+            <label for="name">Supplier name</label>
+        </div>
+
+        <div>
+            <select th:field="*{supplierCategory}" id="supplierCategory">
+                <option th:each="category : ${supplierCategories}" th:value="${category.id}"
+                        th:text="${category.name}"></option>
+            </select>
+            <label for="supplierCategory">Category</label>
+        </div>
+
+        <div>
+            <select th:field="*{supplierStatus}" id="supplierStatus">
+                <option th:each="status : ${supplierStatuses}" th:value="${status.id}"
+                        th:text="${status.name}"></option>
+            </select>
+            <label for="supplierStatus">Status</label>
+        </div>
+
+        <div>
+            <a href="/suppliers/suppliers_list"><input type="button" value="Back"></a>
+            <input type="reset" id="reset" value="Reset">
+            <input type="submit" id="submit" value="Submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>

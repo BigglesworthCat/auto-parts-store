@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Suppliers</title>
+</head>
+<body>
+<div>
+    <h1>Suppliers</h1>
+    <div th:switch="${suppliers}">
+        <h1 th:case="null">No suppliers found!</h1>
+        <div th:case="*">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Supplier</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="supplier : ${suppliers}">
+                    <td th:text="${supplier.id}"></td>
+                    <td th:text="${supplier.name}"></td>
+                    <td th:text="${supplier.supplierCategory.name}"></td>
+                    <td th:text="${supplier.supplierStatus.name}"></td>
+                    <td><a th:href="@{update_supplier/{id}(id=${supplier.id})}">Edit</a></td>
+                    <td><a th:href="@{delete_supplier/{id}(id=${supplier.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="/suppliers/create_supplier"><input type="button" value="Create supplier"></a>
+    <a href="/catalogue/catalogue_menu"><input type="button" value="Back"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer's orders</title>
+</head>
+<body>
+<div>
+    <h1>Customer's orders</h1>
+    <div th:switch="${customerOrders}">
+        <h1 th:case="null">No orders found!</h1>
+        <div th:case="*">
+            <table>
+                <thead>
+                <tr>
+                    <th>Customer order ID</th>
+                    <th>Good</th>
+                    <th>Supplier</th>
+                    <th>SKU amount</th>
+                    <th>Defected SKU amount</th>
+                    <th>Order status</th>
+                    <th>Order date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="customerOrder : ${customerOrders}">
+                    <td th:text="${customerOrder.id}"></td>
+                    <td th:text="${customerOrder.catalogue.good.name}"></td>
+                    <td th:text="${customerOrder.catalogue.supplier.name}"></td>
+                    <td th:text="${customerOrder.skuAmount}"></td>
+                    <td th:text="${customerOrder.defectedSkuAmount}"></td>
+                    <td th:text="${customerOrder.customerOrderStatus.name}"></td>
+                    <td th:text="${customerOrder.date}"></td>
+                    <td><a th:href="@{update_customer_order/{id}(id=${customerOrder.id})}">Edit</a></td>
+                    <td><a th:href="@{delete_customer_order/{id}(id=${customerOrder.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="/customers_orders/create_customer_order"><input type="button"
+                                                             value="Create order"></a>
+    <a href="/"><input type="button"
+                       value="Back"></a>
+</div>
+</body>
+</html>

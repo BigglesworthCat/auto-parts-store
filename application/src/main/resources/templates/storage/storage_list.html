@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+</head>
+<body>
+<div>
+    <h1>Storage</h1>
+    <div th:switch="${storages}">
+        <h1 th:case="null">No contracts found!</h1>
+        <div th:case="*">
+            <table>
+                <thead>
+                <tr>
+                    <th>Cell ID</th>
+                    <th>Good</th>
+                    <th>Supplier</th>
+                    <th>SKU amount</th>
+                    <th>Cell capacity</th>
+                    <th>Replenishment date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="storage : ${storages}">
+                    <td th:text="${storage.id}"></td>
+                    <td th:text="${storage.catalogue.good.name}"></td>
+                    <td th:text="${storage.catalogue.supplier.name}"></td>
+                    <td th:text="${storage.skuAmount}"></td>
+                    <td th:text="${storage.capacity}"></td>
+                    <td th:text="${storage.replenishmentDate}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="/"><input type="button" value="Back"></a>
+</div>
+</body>
+</html>

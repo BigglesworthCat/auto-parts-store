@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create store order</title>
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/store_orders/create_store_order}" th:object="${storeOrder}" method="post">
+        <legend>Create store order</legend>
+
+        <div>
+            <select th:field="*{catalogue}" id="catalogue">
+                <option th:each="sku : ${catalogues}" th:value="${sku.id}"
+                        th:text="${sku.good.name + ' ' + sku.supplier.name + ' ' + sku.supplierPrice}"></option>
+            </select>
+            <label for="catalogue">SKU</label>
+        </div>
+
+        <div>
+            <input type="number" th:field="*{skuAmount}" id="skuAmount" min="1">
+            <label for="skuAmount">SKU amount</label>
+        </div>
+
+        <div>
+            <a href="/store_orders/store_orders_list"><input type="button" value="Back"></a>
+            <input type="reset" id="reset" value="Reset">
+            <input type="submit" id="submit" value="Submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>

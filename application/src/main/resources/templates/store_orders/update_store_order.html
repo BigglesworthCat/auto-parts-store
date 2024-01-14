@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update store order</title>
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/store_orders/update_store_order}" th:object="${storeOrder}" method="post">
+        <legend>Update store order</legend>
+
+        <div>
+            <input readonly type="number" th:field="*{id}" id="id" placeholder="ID"  min="1">
+            <label for="id">ID</label>
+        </div>
+
+        <div>
+            <select th:field="*{storeOrderStatus}" id="storeOrderStatus">
+                <option th:each="status : ${storeOrderStatuses}" th:value="${status.id}"
+                        th:text="${status.name}"></option>
+            </select>
+            <label for="storeOrderStatus">Status</label>
+        </div>
+
+        <div>
+            <a href="/store_orders/store_orders_list"><input type="button" value="Back"></a>
+            <input type="reset" id="reset" value="Reset">
+            <input type="submit" id="submit" value="Submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Contracts</title>
+</head>
+<body>
+<div>
+    <h1>Catalogue</h1>
+    <div th:switch="${catalogues}">
+        <h1 th:case="null">No SKU found!</h1>
+        <div th:case="*">
+            <table>
+                <thead>
+                <tr>
+                    <th>SKU_ID</th>
+                    <th>Good</th>
+                    <th>Supplier</th>
+                    <th>Supplier category</th>
+                    <th>Supplier price</th>
+                    <th>Store price</th>
+                    <th>Delivery days</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="sku : ${catalogues}">
+                    <td th:text="${sku.id}"></td>
+                    <td th:text="${sku.good.name}"></td>
+                    <td th:text="${sku.supplier.name}"></td>
+                    <td th:text="${sku.supplier.supplierCategory.name}"></td>
+                    <td th:text="${sku.supplierPrice}"></td>
+                    <td th:text="${sku.storePrice}"></td>
+                    <td th:text="${sku.deliveryDays}"></td>
+                    <td><a th:href="@{update_sku/{id}(id=${sku.id})}">Edit</a></td>
+                    <td><a th:href="@{delete_sku/{id}(id=${sku.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="/catalogue/create_sku"><input type="button" value="Create SKU"></a>
+    <a href="/catalogue/catalogue_menu"><input type="button" value="Back"></a>
+</div>
+</body>
+</html>

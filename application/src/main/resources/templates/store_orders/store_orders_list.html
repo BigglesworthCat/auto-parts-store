@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Store orders</title>
+</head>
+<body>
+<div>
+    <h1>Store orders</h1>
+    <div th:switch="${storeOrders}">
+        <h1 th:case="null">No orders found!</h1>
+        <div th:case="*">
+            <table>
+                <thead>
+                <tr>
+                    <th>Cell ID</th>
+                    <th>Good</th>
+                    <th>Supplier</th>
+                    <th>SKU amount</th>
+                    <th>Order status</th>
+                    <th>Order date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="storeOrder : ${storeOrders}">
+                    <td th:text="${storeOrder.id}"></td>
+                    <td th:text="${storeOrder.catalogue.good.name}"></td>
+                    <td th:text="${storeOrder.catalogue.supplier.name}"></td>
+                    <td th:text="${storeOrder.skuAmount}"></td>
+                    <td th:text="${storeOrder.storeOrderStatus.name}"></td>
+                    <td th:text="${storeOrder.date}"></td>
+                    <td><a th:href="@{update_store_order/{id}(id=${storeOrder.id})}">Edit</a></td>
+                    <td><a th:href="@{delete_store_order/{id}(id=${storeOrder.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="/store_orders/create_store_order"><input type="button"
+                                                      value="Create order"></a>
+    <a href="/"><input type="button" value="Back"></a>
+</div>
+</body>
+</html>

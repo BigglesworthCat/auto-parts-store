@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update customer order</title>
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/customers_orders/update_customer_order}" th:object="${customerOrder}" method="post">
+        <legend>Update customer order</legend>
+
+        <div>
+            <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+            <label for="id">ID</label>
+        </div>
+
+        <div>
+            <input readonly type="number" th:field="*{skuAmount}" id="skuAmount" placeholder="skuAmount" min="1">
+            <label for="skuAmount">SKU amount</label>
+        </div>
+
+        <div>
+            <input type="number" th:field="*{defectedSkuAmount}" id="defectedSkuAmount" placeholder="defectedSkuAmount" min="0">
+            <label for="defectedSkuAmount">Defected SKU amount</label>
+        </div>
+
+        <div>
+            <select th:field="*{customerOrderStatus}" id="customerOrderStatus">
+                <option th:each="status : ${customerOrderStatuses}" th:value="${status.id}"
+                        th:text="${status.name}"></option>
+            </select>
+            <label for="customerOrderStatus">Status</label>
+        </div>
+
+        <div>
+            <a href="/customers_orders/customers_orders_list"><input type="button" value="Back"></a>
+            <input type="reset" id="reset" value="Reset">
+            <input type="submit" id="submit" value="Submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>
