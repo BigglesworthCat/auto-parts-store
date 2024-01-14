@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/auto_parts_store
+    url: jdbc:postgresql://database:5432/auto_parts_store
     driver-class-name: org.postgresql.Driver
     username: admin
     password: password

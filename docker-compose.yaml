@@ -12,3 +12,11 @@ services:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     volumes:
       - ./database:/docker-entrypoint-initdb.d
+  application:
+    build:
+      context: application
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
